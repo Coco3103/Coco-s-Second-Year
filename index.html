@@ -8,11 +8,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        .glass-morphism { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(12px); }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            /* Sky Blue Gradient Background */
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            background-attachment: fixed;
+        }
+        .glass-morphism { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); }
         .custom-scrollbar::-webkit-scrollbar { width: 5px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
         .tab-active { border-bottom: 3px solid #2563eb; color: #2563eb; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         .fade-in { animation: fadeIn 0.3s ease-out forwards; }
@@ -20,28 +25,35 @@
         .animate-shake { animation: shake 0.2s ease-in-out 0s 2; }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-900 min-h-screen">
+<body class="text-slate-900 min-h-screen">
 
-<nav class="sticky top-0 z-50 glass-morphism border-b border-slate-200 px-6 py-4">
+<nav class="sticky top-0 z-50 glass-morphism border-b border-blue-200/50 px-4 md:px-6 py-4">
     <div class="max-w-7xl mx-auto flex justify-between items-center">
-        <div class="flex items-center space-x-3">
-            <div class="bg-blue-600 p-2.5 rounded-xl text-white shadow-lg shadow-blue-200">
-                <i class="fas fa-microscope text-xl"></i>
+        <!-- Brand Section: Adaptive Sizes -->
+        <div class="flex items-center space-x-2 md:space-x-3">
+            <div class="bg-blue-600 p-2 md:p-2.5 rounded-lg md:rounded-xl text-white shadow-lg shadow-blue-200">
+                <i class="fas fa-microscope text-lg md:text-xl"></i>
             </div>
             <div>
-                <h1 class="text-xl font-bold tracking-tight text-slate-800">Coco's Second Year</h1>
-                <p class="text-[10px] uppercase font-bold text-slate-400 tracking-widest">Second Year Lecture Notes</p>
+                <h1 class="text-base sm:text-lg md:text-xl lg:text-2xl font-bold tracking-tight text-slate-800 leading-tight">
+                    Coco's Second Year
+                </h1>
+                <p class="text-[8px] md:text-[10px] uppercase font-bold text-blue-500 tracking-widest">
+                    Second Year Lecture Notes
+                </p>
             </div>
         </div>
         
-        <div class="flex items-center space-x-4">
-            <div id="connectionStatus" class="px-3 py-1 bg-slate-100 text-slate-500 rounded-lg text-[10px] font-bold uppercase tracking-wider border border-slate-200 flex items-center gap-2">
-                <span class="w-2 h-2 rounded-full bg-slate-300"></span>
+        <div class="flex items-center space-x-2 md:space-x-4">
+            <div id="connectionStatus" class="hidden sm:flex px-2 py-1 bg-white/50 text-slate-500 rounded-lg text-[9px] md:text-[10px] font-bold uppercase tracking-wider border border-white flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
                 <span>Connecting...</span>
             </div>
-            <button id="adminToggle" class="flex items-center space-x-2 bg-slate-800 text-white px-5 py-2.5 rounded-xl text-sm font-semibold hover:bg-slate-700 transition-all shadow-md">
+            <!-- Admin Button: Adaptive Sizes -->
+            <button id="adminToggle" class="flex items-center space-x-1 md:space-x-2 bg-slate-800 text-white px-3 py-2 md:px-5 md:py-2.5 rounded-lg md:rounded-xl text-xs md:text-sm font-semibold hover:bg-slate-700 transition-all shadow-md active:scale-95">
                 <i class="fas fa-user-shield"></i>
-                <span id="adminBtnLabel">Switch to Admin</span>
+                <span id="adminBtnLabel" class="hidden xs:inline">Switch to Admin</span>
+                <span class="xs:hidden">Admin</span>
             </button>
         </div>
     </div>
@@ -51,21 +63,21 @@
     <div class="flex flex-col lg:flex-row gap-8">
         
         <aside class="w-full lg:w-72 flex-shrink-0">
-            <h2 class="text-xs font-bold uppercase text-slate-400 tracking-widest mb-4 px-2">Medical Courses</h2>
+            <h2 class="text-xs font-bold uppercase text-blue-600 tracking-widest mb-4 px-2">Medical Courses</h2>
             <nav id="courseSidebar" class="space-y-1 custom-scrollbar max-h-[calc(100vh-200px)] overflow-y-auto pr-2">
                 <!-- Courses Injected via JS -->
             </nav>
         </aside>
 
-        <section class="flex-1 bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
-            <div class="border-b border-slate-100 bg-slate-50/30 p-8">
+        <section class="flex-1 bg-white/90 rounded-3xl shadow-xl shadow-blue-900/5 border border-white/50 overflow-hidden flex flex-col backdrop-blur-sm">
+            <div class="border-b border-slate-100 bg-slate-50/50 p-6 md:p-8">
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
                     <div>
                         <div class="flex items-center space-x-2 text-blue-600 text-sm font-semibold mb-1">
                             <i id="headerIcon" class="fas fa-stethoscope"></i>
                             <span id="breadcrumbCourse">Medical Studies</span>
                         </div>
-                        <h2 id="currentCourseTitle" class="text-3xl font-extrabold text-slate-800 tracking-tight">Select a Course</h2>
+                        <h2 id="currentCourseTitle" class="text-2xl md:text-3xl font-extrabold text-slate-800 tracking-tight">Select a Course</h2>
                     </div>
                     
                     <button id="addDocBtn" class="hidden items-center space-x-2 bg-emerald-600 text-white px-6 py-3 rounded-2xl font-bold hover:bg-emerald-700 transition-all shadow-lg shadow-emerald-100 active:scale-95">
@@ -74,21 +86,21 @@
                     </button>
                 </div>
 
-                <div class="flex space-x-10 border-b border-slate-200">
-                    <button onclick="window.changeTerm(1)" id="term-tab-1" class="pb-4 text-sm font-bold transition-all tab-active">Term 01</button>
-                    <button onclick="window.changeTerm(2)" id="term-tab-2" class="pb-4 text-sm font-bold transition-all text-slate-400 hover:text-slate-600">Term 02</button>
-                    <button onclick="window.changeTerm(3)" id="term-tab-3" class="pb-4 text-sm font-bold transition-all text-slate-400 hover:text-slate-600">Term 03</button>
+                <div class="flex space-x-6 md:space-x-10 border-b border-slate-200">
+                    <button onclick="window.changeTerm(1)" id="term-tab-1" class="pb-4 text-xs md:text-sm font-bold transition-all tab-active uppercase tracking-wider">Term 01</button>
+                    <button onclick="window.changeTerm(2)" id="term-tab-2" class="pb-4 text-xs md:text-sm font-bold transition-all text-slate-400 hover:text-slate-600 uppercase tracking-wider">Term 02</button>
+                    <button onclick="window.changeTerm(3)" id="term-tab-3" class="pb-4 text-xs md:text-sm font-bold transition-all text-slate-400 hover:text-slate-600 uppercase tracking-wider">Term 03</button>
                 </div>
             </div>
 
-            <div class="p-8 flex-1 min-h-[400px]">
+            <div class="p-6 md:p-8 flex-1 min-h-[400px]">
                 <div id="docGrid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                     <!-- Documents Injected via JS -->
                 </div>
                 
                 <div id="emptyState" class="hidden flex flex-col items-center justify-center py-24 text-center">
-                    <div class="w-24 h-24 bg-slate-50 rounded-full flex items-center justify-center mb-6 border border-dashed border-slate-200">
-                        <i class="fas fa-folder-open text-slate-300 text-4xl"></i>
+                    <div class="w-20 h-20 md:w-24 md:h-24 bg-white rounded-full flex items-center justify-center mb-6 border border-dashed border-blue-200 shadow-inner">
+                        <i class="fas fa-folder-open text-blue-200 text-3xl md:text-4xl"></i>
                     </div>
                     <h3 class="text-slate-800 font-bold text-lg">No documents found</h3>
                     <p class="text-slate-500 max-w-xs mx-auto text-sm mt-2">Materials for this term have not been uploaded to Google Drive yet.</p>
@@ -164,7 +176,6 @@
     let unsubscribe = null;
     let useLocalStorage = true; 
 
-    // Specific Medical Curriculum
     const courses = [
         { id: "histology", name: "Histology", icon: "fa-microscope" },
         { id: "embryology", name: "Embryology", icon: "fa-baby" },
@@ -212,6 +223,7 @@
 
     function setStatus(mode) {
         const indicator = document.getElementById('connectionStatus');
+        if (!indicator) return;
         if (mode === "online") {
             indicator.innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span><span>Cloud Sync</span>';
             useLocalStorage = false;
@@ -238,8 +250,8 @@
         const sidebar = document.getElementById('courseSidebar');
         sidebar.innerHTML = courses.map(course => `
             <button onclick="window.setCourse('${course.id}')" 
-                class="w-full flex items-center space-x-3 px-4 py-3.5 rounded-2xl transition-all ${currentCourse.id === course.id ? 'bg-blue-600 text-white shadow-lg' : 'text-slate-500 hover:bg-slate-100'}">
-                <div class="w-8 h-8 rounded-xl flex items-center justify-center ${currentCourse.id === course.id ? 'bg-white/20' : 'bg-slate-100 text-slate-400'}">
+                class="w-full flex items-center space-x-3 px-4 py-3.5 rounded-2xl transition-all ${currentCourse.id === course.id ? 'bg-blue-600 text-white shadow-lg' : 'text-slate-500 hover:bg-white/60'}">
+                <div class="w-8 h-8 rounded-xl flex items-center justify-center ${currentCourse.id === course.id ? 'bg-white/20' : 'bg-blue-50 text-blue-400'}">
                     <i class="fas ${course.icon}"></i>
                 </div>
                 <span class="text-sm font-semibold">${course.name}</span>
@@ -254,11 +266,16 @@
 
         [1, 2, 3].forEach(t => {
             const btn = document.getElementById(`term-tab-${t}`);
-            btn.className = `pb-4 text-sm font-bold transition-all ${t === currentTerm ? 'tab-active' : 'text-slate-400 hover:text-slate-600'}`;
+            btn.className = `pb-4 text-xs md:text-sm font-bold transition-all ${t === currentTerm ? 'tab-active' : 'text-slate-400 hover:text-slate-600'}`;
         });
 
         document.getElementById('addDocBtn').classList.toggle('hidden', !isAdmin);
-        document.getElementById('adminBtnLabel').innerText = isAdmin ? "Switch to Student" : "Switch to Admin";
+        const adminBtnLabel = document.getElementById('adminBtnLabel');
+        if (window.innerWidth < 480) {
+            adminBtnLabel.innerText = isAdmin ? "Student" : "Admin";
+        } else {
+            adminBtnLabel.innerText = isAdmin ? "Switch to Student" : "Switch to Admin";
+        }
         
         if (useLocalStorage) renderDocsFromLocal();
     }
@@ -274,16 +291,16 @@
         empty.classList.add('hidden');
         grid.innerHTML = docs.sort((a, b) => (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0)).map(doc => {
             return `
-            <div class="fade-in group bg-white border border-slate-100 p-5 rounded-3xl hover:border-blue-200 hover:shadow-xl transition-all">
+            <div class="fade-in group bg-white border border-slate-100 p-5 rounded-3xl hover:border-blue-300 hover:shadow-xl transition-all">
                 <div class="flex justify-between items-start mb-4">
-                    <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center">
+                    <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center">
                         <i class="fab fa-google-drive text-xl"></i>
                     </div>
                     ${isAdmin ? `<button onclick="window.deleteDocument('${doc.id}')" class="w-8 h-8 rounded-full flex items-center justify-center text-slate-300 hover:text-red-500 hover:bg-red-50"><i class="fas fa-trash-can text-sm"></i></button>` : ''}
                 </div>
                 <h4 class="font-bold text-slate-800 line-clamp-2 leading-snug mb-1">${doc.title}</h4>
-                <p class="text-[10px] text-slate-400 font-bold uppercase tracking-tight mb-4">Google Drive Asset</p>
-                <a href="${doc.url}" target="_blank" class="block w-full text-center py-3 rounded-2xl bg-emerald-50 text-emerald-700 hover:bg-emerald-600 text-xs font-bold hover:text-white transition-all uppercase tracking-wider">Open in Drive</a>
+                <p class="text-[10px] text-slate-400 font-bold uppercase tracking-tight mb-4">Drive Link</p>
+                <a href="${doc.url}" target="_blank" class="block w-full text-center py-3 rounded-2xl bg-blue-50 text-blue-700 hover:bg-blue-600 text-xs font-bold hover:text-white transition-all uppercase tracking-wider">View Lecture</a>
             </div>
         `}).join('');
     }
@@ -314,7 +331,7 @@
         if (!useLocalStorage && db) {
             try { await deleteDoc(doc(db, 'artifacts', typeof __app_id !== 'undefined' ? __app_id : 'med-vault-local', 'public', 'data', 'documents', id)); } catch (e) {}
         }
-        showToast("Document deleted");
+        showToast("Document removed");
         updateUI();
     };
 
@@ -381,15 +398,15 @@
 
         modal.classList.add('hidden');
         document.getElementById('docForm').reset();
-        showToast("Published to Drive links");
+        showToast("Published to cloud");
         updateUI();
     });
 
     function showToast(msg) {
         const container = document.getElementById('toastContainer');
         const toast = document.createElement('div');
-        toast.className = `flex items-center space-x-3 px-6 py-4 rounded-2xl shadow-2xl bg-white border-l-4 border-emerald-500 text-slate-800 pointer-events-auto fade-in`;
-        toast.innerHTML = `<i class="fas fa-circle-check text-emerald-500"></i> <span class="text-sm font-bold">${msg}</span>`;
+        toast.className = `flex items-center space-x-3 px-6 py-4 rounded-2xl shadow-2xl bg-white border-l-4 border-blue-500 text-slate-800 pointer-events-auto fade-in`;
+        toast.innerHTML = `<i class="fas fa-circle-check text-blue-500"></i> <span class="text-sm font-bold">${msg}</span>`;
         container.appendChild(toast);
         setTimeout(() => {
             toast.style.opacity = '0';
@@ -397,6 +414,7 @@
         }, 3000);
     }
 
+    window.addEventListener('resize', updateUI);
     window.onload = init;
 </script>
 </body>
